@@ -177,7 +177,7 @@ export const GhostServiceSettingsView = ({
 					</div>
 
 					<div className="flex flex-col gap-2">
-						{(provider === "openrouter") ? (
+						{(provider === "OpenRouter") ? (
 							// integration of modelpicker (the kilo codebase already has the model picker sorted out and easy to use)
 							<ModelPicker
 								defaultModelId={model || ""}
