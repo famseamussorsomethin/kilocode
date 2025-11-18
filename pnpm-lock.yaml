@@ -19397,7 +19397,7 @@ snapshots:
 
   '@alcalzone/ansi-tokenize@0.2.0':
     dependencies:
-      ansi-styles: 6.2.1
+      ansi-styles: 6.2.3
       is-fullwidth-code-point: 5.0.0
 
   '@algolia/abtesting@1.2.0':
@@ -38472,7 +38472,7 @@ snapshots:
 
   slice-ansi@7.1.0:
     dependencies:
-      ansi-styles: 6.2.1
+      ansi-styles: 6.2.3
       is-fullwidth-code-point: 5.0.0
 
   smart-buffer@4.2.0: {}
@@ -40959,7 +40959,7 @@ snapshots:
 
   wrap-ansi@9.0.0:
     dependencies:
-      ansi-styles: 6.2.1
+      ansi-styles: 6.2.3
       string-width: 7.2.0
       strip-ansi: 7.1.2
 

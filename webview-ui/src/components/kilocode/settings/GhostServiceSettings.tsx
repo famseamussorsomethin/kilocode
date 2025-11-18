@@ -6,8 +6,10 @@ import { Bot, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { SectionHeader } from "../../settings/SectionHeader"
 import { Section } from "../../settings/Section"
-import { GhostServiceSettings } from "@roo-code/types"
+import { GhostServiceSettings, ProviderSettings } from "@roo-code/types" // added providersettings
 import { vscode } from "@/utils/vscode"
+import { useExtensionState } from "@/context/ExtensionStateContext" // added
+import { ModelPicker } from "../../settings/ModelPicker" // added
 import { VSCodeCheckbox } from "@vscode/webview-ui-toolkit/react"
 import { useKeybindings } from "@/hooks/useKeybindings"
 
@@ -26,6 +28,7 @@ export const GhostServiceSettingsView = ({
 	...props
 }: GhostServiceSettingsViewProps) => {
 	const { t } = useAppTranslation()
+	const { apiConfiguration, routerModels, organizationAllowList } = useExtensionState()
 	const {
 		enableAutoTrigger,
 		enableQuickInlineTaskKeybinding,
@@ -60,6 +63,15 @@ export const GhostServiceSettingsView = ({
 	const onUseNewAutocompleteChange = useCallback(
 		(e: any) => {
 			onGhostServiceSettingsChange("useNewAutocomplete", e.target.checked)
+		},
+		[onGhostServiceSettingsChange],
+	)
+
+	const setAutocompleteModelField = useCallback(
+		(field: keyof ProviderSettings, value: any) => {
+			if (field === "openRouterModelId") {
+				onGhostServiceSettingsChange("model", value) // model change
+			}
 		},
 		[onGhostServiceSettingsChange],
 	)
@@ -165,24 +177,41 @@ export const GhostServiceSettingsView = ({
 					</div>
 
 					<div className="flex flex-col gap-2">
-						<div className="text-sm">
-							{provider && model ? (
-								<>
-									<div className="text-vscode-descriptionForeground">
-										<span className="font-medium">{t("kilocode:ghost.settings.provider")}:</span>{" "}
-										{provider}
-									</div>
-									<div className="text-vscode-descriptionForeground">
-										<span className="font-medium">{t("kilocode:ghost.settings.model")}:</span>{" "}
-										{model}
-									</div>
-								</>
-							) : (
-								<div className="text-vscode-errorForeground">
-									{t("kilocode:ghost.settings.noModelConfigured")}
+						{(provider === "openrouter") ? (
+							// integration of modelpicker (the kilo codebase already has the model picker sorted out and easy to use)
+							<ModelPicker
+								defaultModelId={model || ""}
+								models={routerModels?.openrouter ?? {}}
+								modelIdKey="openRouterModelId"
+								serviceName="OpenRouter"
+								serviceUrl="https://openrouter.ai/api/v1/models"
+								// new api config so it doesnt reuse the chat/agent model and not allow you to select via all open router models.
+								apiConfiguration={{
+									apiProvider: "openrouter",
+									openRouterModelId: model,
+									kilocodeToken: apiConfiguration?.kilocodeToken,
+									openRouterApiKey: apiConfiguration?.openRouterApiKey,
+								} as ProviderSettings}
+								setApiConfigurationField={setAutocompleteModelField}
+								organizationAllowList={organizationAllowList}
+							/>
+						) : provider && model ? (
+							// then the original code here for if its NOT open router.
+							<div className="text-sm">
+								<div className="text-vscode-descriptionForeground">
+									<span className="font-medium">{t("kilocode:ghost.settings.provider")}:</span>{" "}
+									{provider}
 								</div>
-							)}
-						</div>
+								<div className="text-vscode-descriptionForeground">
+									<span className="font-medium">{t("kilocode:ghost.settings.model")}:</span>{" "}
+									{model}
+								</div>
+							</div>
+						) : (
+							<div className="text-sm text-vscode-errorForeground">
+								{t("kilocode:ghost.settings.noModelConfigured")}
+							</div>
+						)}
 					</div>
 				</div>
 			</Section>

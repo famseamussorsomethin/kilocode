@@ -10,6 +10,7 @@
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
+		"ignoreDeprecations": "6.0",
 		"module": "esnext",
 		"sourceMap": true,
 		"inlineSources": false,
