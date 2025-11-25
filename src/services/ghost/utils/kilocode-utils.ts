@@ -39,7 +39,8 @@ export async function checkKilocodeBalance(kilocodeToken: string, kilocodeOrgani
 export const AUTOCOMPLETE_PROVIDER_MODELS = new Map([
 	["mistral", "codestral-latest"],
 	["kilocode", "mistralai/codestral-2508"],
-	["openrouter", "mistralai/codestral-2508"],
+	["openrouter", "x-ai/grok-4.1-fast"], // changed to free model
+	["openai", "abcdef"], // for some reason i can put any string here and it picks the model u have equipped on openai compatible
 	["bedrock", "mistral.codestral-2508-v1:0"],
 ] as const)
 export type AutocompleteProviderKey = typeof AUTOCOMPLETE_PROVIDER_MODELS extends Map<infer K, any> ? K : never

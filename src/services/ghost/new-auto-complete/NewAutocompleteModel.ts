@@ -3,6 +3,7 @@ import {
 	modelIdKeysByProvider,
 	ProviderSettings,
 	ProviderSettingsEntry,
+	TypicalProvider, // added
 } from "@roo-code/types"
 import { ApiHandler, buildApiHandler } from "../../../api"
 import { ProviderSettingsManager } from "../../../core/config/ProviderSettingsManager"
@@ -50,7 +51,11 @@ export class NewAutocompleteModel {
 			}
 
 			this.profile = profile
-			this.apiHandler = buildApiHandler({ ...profile, [modelIdKeysByProvider[provider]]: model })
+			if (provider === "openai") { // fix error with openai with the modelidkeysbyprovider thing.
+				this.apiHandler = buildApiHandler({ ...profile, openAiModelId: model })
+			} else {
+				this.apiHandler = buildApiHandler({ ...profile, [modelIdKeysByProvider[provider as TypicalProvider]]: model })
+			}
 
 			if (this.apiHandler instanceof OpenRouterHandler) {
 				await this.apiHandler.fetchModel()
@@ -169,6 +174,16 @@ export class NewAutocompleteModel {
 				return {
 					apiKey: this.profile.openRouterApiKey,
 					apiBase: this.profile.openRouterBaseUrl || "https://openrouter.ai/api/v1",
+					model,
+				}
+			case "openai": // added
+				if (!this.profile.openAiApiKey) {
+					console.warn("[NewAutocompleteModel] Missing OpenAI API key")
+					return null
+				}
+				return {
+					apiKey: this.profile.openAiApiKey,
+					apiBase: this.profile.openAiBaseUrl || "https://api.openai.com/v1",
 					model,
 				}
 
