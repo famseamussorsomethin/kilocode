@@ -476,7 +476,12 @@ function getSelectedModel({
 			const info = routerModels["vercel-ai-gateway"]?.[id]
 			return { id, info }
 		}
-		// kilocode_change start
+		//kilocode_change start
+		case "nano-gpt": {
+			const id = apiConfiguration.nanoGptModelId ?? "chatgpt-4o-latest"
+			const info = routerModels["nano-gpt"]?.[id]
+			return { id, info }
+		}
 		case "ovhcloud": {
 			const id = apiConfiguration.ovhCloudAiEndpointsModelId ?? ovhCloudAiEndpointsDefaultModelId
 			const info = routerModels.ovhcloud[id]

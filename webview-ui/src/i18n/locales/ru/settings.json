@@ -95,8 +95,12 @@
 		"modelPlaceholder": "Введите название модели",
 		"selectModel": "Выберите модель",
 		"ollamaBaseUrlLabel": "Базовый URL Ollama",
+		"vectorStoreProviderLabel": "Поставщик векторного хранилища",
 		"qdrantApiKeyLabel": "API-ключ Qdrant",
 		"qdrantApiKeyPlaceholder": "Введите ваш API-ключ Qdrant (необязательно)",
+		"lancedbVectorStoreDirectoryLabel": "Путь LanceDB Vector Store",
+		"lancedbVectorStoreDirectoryPlaceholder": "Введите пользовательский путь векторного хранилища (необязательно)",
+		"lancedbVectorStoreDirectoryDescription": "Путь для хранения базы данных LanceDB. Если пустой, используется местоположение по умолчанию в globalStorageUri/vector.",
 		"setupConfigLabel": "Настройка",
 		"ollamaUrlPlaceholder": "http://localhost:11434",
 		"openAiCompatibleBaseUrlPlaceholder": "https://api.example.com",
@@ -417,6 +421,14 @@
 		"getUnboundApiKey": "Получить Unbound API-ключ",
 		"unboundRefreshModelsSuccess": "Список моделей обновлен! Теперь вы можете выбрать из последних моделей.",
 		"unboundInvalidApiKey": "Недействительный API-ключ. Пожалуйста, проверьте ваш API-ключ и попробуйте снова.",
+		"nanoGptApiKey": "API-ключ Nano-GPT",
+		"getNanoGptApiKey": "Получить API-ключ Nano-GPT",
+		"nanoGptModelList": "Список моделей",
+		"nanoGptModelListOptions": {
+			"all": "Все модели",
+			"personalized": "Персонализированные модели",
+			"subscription": "Модели по подписке"
+		},
 		"humanRelay": {
 			"description": "API-ключ не требуется, но пользователю нужно вручную копировать и вставлять информацию в веб-чат ИИ.",
 			"instructions": "Во время использования появится диалоговое окно, и текущее сообщение будет скопировано в буфер обмена автоматически. Вам нужно вставить его в веб-версию ИИ (например, ChatGPT или Claude), затем скопировать ответ ИИ обратно в диалоговое окно и нажать кнопку подтверждения."

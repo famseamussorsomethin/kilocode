@@ -96,8 +96,12 @@
 		"modelPlaceholder": "Inserisci il nome del modello",
 		"selectModel": "Seleziona un modello",
 		"ollamaBaseUrlLabel": "URL base Ollama",
+		"vectorStoreProviderLabel": "Fornitore di archivio vettoriale",
 		"qdrantApiKeyLabel": "Chiave API Qdrant",
 		"qdrantApiKeyPlaceholder": "Inserisci la tua chiave API Qdrant (opzionale)",
+		"lancedbVectorStoreDirectoryLabel": "Percorso LanceDB Vector Store",
+		"lancedbVectorStoreDirectoryPlaceholder": "Inserisci un percorso personalizzato dell'archivio vettoriale (opzionale)",
+		"lancedbVectorStoreDirectoryDescription": "Percorso per archiviare il database vettoriale LanceDB. Se vuoto, viene utilizzata la posizione predefinita in globalStorageUri/vector.",
 		"setupConfigLabel": "Impostazione",
 		"ollamaUrlPlaceholder": "http://localhost:11434",
 		"openAiCompatibleBaseUrlPlaceholder": "https://api.example.com",
@@ -427,6 +431,14 @@
 		"getUnboundApiKey": "Ottieni chiave API Unbound",
 		"unboundRefreshModelsSuccess": "Lista dei modelli aggiornata! Ora puoi selezionare tra gli ultimi modelli.",
 		"unboundInvalidApiKey": "Chiave API non valida. Controlla la tua chiave API e riprova.",
+		"nanoGptApiKey": "Chiave API Nano-GPT",
+		"getNanoGptApiKey": "Ottieni chiave API Nano-GPT",
+		"nanoGptModelList": "Elenco modelli",
+		"nanoGptModelListOptions": {
+			"all": "Tutti i modelli",
+			"personalized": "Modelli personalizzati",
+			"subscription": "Modelli in abbonamento"
+		},
 		"humanRelay": {
 			"description": "Non è richiesta alcuna chiave API, ma l'utente dovrà aiutare a copiare e incollare le informazioni nella chat web AI.",
 			"instructions": "Durante l'uso, apparirà una finestra di dialogo e il messaggio corrente verrà automaticamente copiato negli appunti. Dovrai incollarlo nelle versioni web dell'AI (come ChatGPT o Claude), quindi copiare la risposta dell'AI nella finestra di dialogo e fare clic sul pulsante di conferma."
